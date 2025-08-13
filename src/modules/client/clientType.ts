@@ -12,7 +12,6 @@ export type ClientFormData = {
   name: string;
   description: string;
   address: string;
-  status: "Active" | "Inactive";
-  startDate: string;
-  endDate: string;
+  startDate: Date |null;
+  endDate: Date|null;
 }

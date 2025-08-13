@@ -3,7 +3,6 @@
     {
       "id": "1",
       "name": "Acme Corp",
-      "status": "Active",
       "address": "123 Main St, NY",
       "description": "Primary enterprise client",
       "startDate": "2022-01-01",
@@ -12,7 +11,6 @@
     {
       "id": "2",
       "name": "Beta Solutions",
-      "status": "Inactive",
       "address": "456 Market St, CA",
       "description": "Legacy system user",
       "startDate": "2020-06-15",
@@ -21,7 +19,6 @@
     {
       "id": "3",
       "name": "Gamma Enterprises",
-      "status": "Active",
       "address": "789 Elm St, TX",
       "description": "Fast-growing tech client",
       "startDate": "2023-03-01",
@@ -30,7 +27,6 @@
     {
       "id": "4",
       "name": "Delta Services",
-      "status": "Active",
       "address": "101 Ocean Dr, FL",
       "description": "Provides IT support",
       "startDate": "2021-09-01",
@@ -39,7 +35,6 @@
     {
       "id": "5",
       "name": "Epsilon Ltd",
-      "status": "Inactive",
       "address": "500 Tech Ave, WA",
       "description": "Retail sector",
       "startDate": "2019-11-01",
@@ -48,7 +43,6 @@
     {
       "id": "6",
       "name": "Zeta Group",
-      "status": "Active",
       "address": "600 Industrial Rd, NJ",
       "description": "Manufacturing client",
       "startDate": "2022-05-10",
@@ -57,7 +51,6 @@
     {
       "id": "7",
       "name": "Eta Dynamics",
-      "status": "Inactive",
       "address": "700 Finance Blvd, IL",
       "description": "Finance operations",
       "startDate": "2020-01-01",
@@ -66,7 +59,6 @@
     {
       "id": "8",
       "name": "Theta Systems",
-      "status": "Active",
       "address": "890 Silicon St, AZ",
       "description": "AI and automation",
       "startDate": "2023-07-01",
@@ -75,7 +67,6 @@
     {
       "id": "9",
       "name": "Iota Innovations",
-      "status": "Active",
       "address": "900 Lab Rd, CO",
       "description": "Healthcare R&D",
       "startDate": "2021-04-15",
@@ -84,7 +75,6 @@
     {
       "id": "10",
       "name": "Kappa Tech",
-      "status": "Inactive",
       "address": "321 Loop St, OH",
       "description": "SaaS provider",
       "startDate": "2018-08-01",
@@ -95,9 +85,16 @@
       "name": "Zora Corps",
       "description": "Automation Client",
       "address": "Down South , LA , India",
-      "status": "Active",
       "startDate": "2025-08-06",
       "endDate": "2025-08-15"
+    },
+    {
+      "id": "5977",
+      "name": "Denkart",
+      "description": "Ecommerce Unit",
+      "address": "Down South , LA , India",
+      "startDate": "2025-08-06",
+      "endDate": "2025-08-14"
     }
   ],
   "functionalAreas": [
@@ -106,18 +103,13 @@
       "name": "Operations",
       "type": "Core",
       "definition": "Manages logistics and production",
-      "startDate": "2023-01-01",
-      "endDate": "2024-12-31",
-      "alignClientId": 1
-    },
-    {
-      "id": "2",
-      "name": "Marketing",
-      "type": "Support",
-      "definition": "Handles promotions and branding",
-      "startDate": "2022-05-10",
-      "endDate": "2023-11-30",
-      "alignClientId": 3
+      "startDate": "2025-08-04",
+      "endDate": "2025-12-28",
+      "alignClients": [
+        "Client A",
+        "Client C",
+        "Client D"
+      ]
     },
     {
       "id": "3",
@@ -126,7 +118,11 @@
       "definition": "Responsible for budgets and accounting",
       "startDate": "2022-06-01",
       "endDate": "2025-06-01",
-      "alignClientId": 4
+      "alignClients": [
+        "Client A",
+        "Client B",
+        "Client C"
+      ]
     },
     {
       "id": "4",
@@ -135,7 +131,9 @@
       "definition": "Human resources management",
       "startDate": "2023-03-15",
       "endDate": "2025-03-15",
-      "alignClientId": 6
+      "alignClients": [
+        "Client D"
+      ]
     },
     {
       "id": "5",
@@ -144,52 +142,48 @@
       "definition": "Maintains IT infrastructure",
       "startDate": "2022-09-01",
       "endDate": "2024-09-01",
-      "alignClientId": 8
+      "alignClients": [
+        "Client B",
+        "Client D",
+        "Client E"
+      ]
     },
     {
-      "id": "6",
-      "name": "Research",
-      "type": "Innovation",
-      "definition": "Focuses on product R&D",
-      "startDate": "2023-02-20",
-      "endDate": "2025-02-20",
-      "alignClientId": 9
+      "id": "0d10",
+      "name": "Manufacturing",
+      "type": "Core",
+      "definition": "Semiconductors",
+      "startDate": "2025-08-08",
+      "endDate": "2025-08-15",
+      "alignClients": [
+        "Acme Corp",
+        "Zora Corps"
+      ]
     },
     {
-      "id": "7",
-      "name": "Customer Support",
-      "type": "Support",
-      "definition": "Handles customer issues and feedback",
-      "startDate": "2023-04-01",
-      "endDate": "2025-04-01",
-      "alignClientId": 1
+      "id": "ce70",
+      "name": "Freelancer",
+      "type": "Business Outsourcing",
+      "definition": "Managing business",
+      "startDate": "2025-08-05",
+      "endDate": "2025-08-14",
+      "alignClients": [
+        "Gamma Enterprises",
+        "Zora Corps",
+        "Theta Systems"
+      ]
     },
     {
-      "id": "8",
-      "name": "Legal",
-      "type": "Advisory",
-      "definition": "Manages legal compliance",
-      "startDate": "2022-01-01",
-      "endDate": "2024-01-01",
-      "alignClientId": 4
-    },
-    {
-      "id": "9",
-      "name": "Procurement",
-      "type": "Operational",
-      "definition": "Supplies and vendor management",
-      "startDate": "2023-07-15",
-      "endDate": "2026-07-15",
-      "alignClientId": 6
-    },
-    {
-      "id": "10",
-      "name": "Analytics",
-      "type": "Technical",
-      "definition": "Data analysis and reporting",
-      "startDate": "2022-10-01",
-      "endDate": "2024-10-01",
-      "alignClientId": 3
+      "id": "a47d",
+      "name": "Enterprises",
+      "type": "Business",
+      "definition": "PVC ",
+      "startDate": "2025-08-11T18:30:00.000Z",
+      "endDate": "2025-08-14T18:30:00.000Z",
+      "alignClients": [
+        "Denkart",
+        "Theta Systems"
+      ]
     }
   ],
   "roles": [
@@ -199,8 +193,7 @@
       "type": "System",
       "definition": "Manages the platform",
       "startDate": "2022-01-01",
-      "endDate": "2025-01-01",
-      "status": "Active"
+      "endDate": "2025-01-01"
     },
     {
       "id": "2",
@@ -208,8 +201,7 @@
       "type": "Operational",
       "definition": "Oversees teams",
       "startDate": "2023-02-10",
-      "endDate": "2026-02-10",
-      "status": "Active"
+      "endDate": "2026-02-10"
     },
     {
       "id": "3",
@@ -217,8 +209,7 @@
       "type": "Technical",
       "definition": "Builds applications",
       "startDate": "2022-05-01",
-      "endDate": "2024-05-01",
-      "status": "Inactive"
+      "endDate": "2024-05-01"
     },
     {
       "id": "4",
@@ -226,8 +217,7 @@
       "type": "Creative",
       "definition": "Designs UI/UX",
       "startDate": "2023-01-20",
-      "endDate": "2025-01-20",
-      "status": "Active"
+      "endDate": "2025-01-20"
     },
     {
       "id": "5",
@@ -235,8 +225,7 @@
       "type": "QA",
       "definition": "Tests product features",
       "startDate": "2022-09-15",
-      "endDate": "2024-09-15",
-      "status": "Inactive"
+      "endDate": "2024-09-15"
     },
     {
       "id": "6",
@@ -244,8 +233,7 @@
       "type": "Business",
       "definition": "Analyzes data trends",
       "startDate": "2023-06-01",
-      "endDate": "2026-06-01",
-      "status": "Active"
+      "endDate": "2026-06-01"
     },
     {
       "id": "7",
@@ -253,8 +241,7 @@
       "type": "HR",
       "definition": "Finds talent",
       "startDate": "2023-03-10",
-      "endDate": "2025-03-10",
-      "status": "Active"
+      "endDate": "2025-03-10"
     },
     {
       "id": "8",
@@ -262,8 +249,7 @@
       "type": "External",
       "definition": "Advisory role",
       "startDate": "2022-11-01",
-      "endDate": "2024-11-01",
-      "status": "Inactive"
+      "endDate": "2024-11-01"
     },
     {
       "id": "9",
@@ -271,156 +257,114 @@
       "type": "Customer Service",
       "definition": "Handles support tickets",
       "startDate": "2022-10-01",
-      "endDate": "2025-10-01",
-      "status": "Active"
+      "endDate": "2025-10-01"
     },
     {
-      "id": "10",
-      "name": "Intern",
-      "type": "Temporary",
-      "definition": "Assists with tasks",
-      "startDate": "2023-07-01",
-      "endDate": "2023-12-31",
-      "status": "Inactive"
+      "id": "8187",
+      "name": "Psychologist",
+      "definition": "Examines mental health",
+      "type": "Medicine",
+      "startDate": "2025-08-12",
+      "endDate": "2025-08-21"
     }
   ],
   "permissions": [
     {
-      "id": "1",
-      "name": "Read Reports",
-      "definition": "Can view reports",
-      "status": "Active",
-      "clientId": 1,
-      "permissionGroups": [
-        "Reporting"
-      ],
-      "roleIds": [
-        1,
-        2
-      ]
-    },
-    {
       "id": "2",
       "name": "Edit Users",
       "definition": "Can edit user details",
-      "status": "Inactive",
-      "clientId": 3,
-      "permissionGroups": [
-        "User Management"
+      "startDate": "2021-01-01",
+      "endDate": "2022-12-31",
+      "roles": [
+        "Admin",
+        "HR"
       ],
-      "roleIds": [
-        1
-      ]
-    },
-    {
-      "id": "3",
-      "name": "Manage Roles",
-      "definition": "Can create/update roles",
-      "status": "Active",
-      "clientId": 4,
-      "permissionGroups": [
-        "Role Control"
-      ],
-      "roleIds": [
-        1,
-        6
-      ]
+      "clients": "Client B"
     },
     {
       "id": "4",
       "name": "Access Analytics",
       "definition": "View dashboards and KPIs",
-      "status": "Active",
-      "clientId": 6,
-      "permissionGroups": [
-        "Analytics"
+      "startDate": "2023-01-01",
+      "endDate": "2025-12-31",
+      "roles": [
+        "Data Analyst",
+        "Executive"
       ],
-      "roleIds": [
-        6,
-        9
+      "clients": "Client C"
+    },
+    {
+      "id": "0998",
+      "name": "Manage Records",
+      "definition": "Records management",
+      "startDate": "2025-08-01",
+      "endDate": "2025-08-09",
+      "clients": "Beta Solutions",
+      "roles": [
+        "Manager"
       ]
     },
     {
-      "id": "5",
-      "name": "Delete Data",
+      "id": "f49b",
+      "name": "Manage Users",
+      "definition": "Provide access to users",
+      "startDate": "2025-08-04",
+      "endDate": "2025-08-21",
+      "clients": "Gamma Enterprises",
+      "roles": [
+        "Manager",
+        "Analyst",
+        "Support Agent"
+      ]
+    },
+    {
+      "id": "f91f",
+      "name": "Edit Profiles",
+      "definition": "Management of profiles",
+      "startDate": "2025-08-11T18:30:00.000Z",
+      "endDate": "2025-08-19T18:30:00.000Z",
+      "clients": "Zora Corps",
+      "roles": [
+        "Analyst",
+        "Support Agent",
+        "Manager"
+      ]
+    },
+    {
+      "id": "b3e3",
+      "name": "Delete Records",
       "definition": "Can delete records",
-      "status": "Inactive",
-      "clientId": 8,
-      "permissionGroups": [
-        "Danger Zone"
-      ],
-      "roleIds": [
-        1
+      "startDate": "2025-08-20T18:30:00.000Z",
+      "endDate": "2025-08-29T18:30:00.000Z",
+      "clients": "Gamma Enterprises",
+      "roles": [
+        "Analyst",
+        "Support Agent"
       ]
+    }
+  ],
+  "engagements": [
+    {
+      "engagementId": 1,
+      "engagementOwner": "Alice Johnson",
+      "speaker": "Dr. Michael Smith",
+      "caterer": "Gourmet Bites",
+      "cohost": "John Davis",
+      "primaryDateTime": "09/15/2025 10:00 AM GMT+5:30",
+      "secondaryDateTime": "09/16/2025 02:00 PM GMT+5:30",
+      "tertiaryDateTime": "09/17/2025 09:30 AM GMT+5:30",
+      "createdDateTime": "08/13/2025 12:34 PM GMT+5:30"
     },
     {
-      "id": "6",
-      "name": "Approve Requests",
-      "definition": "Can approve workflows",
-      "status": "Active",
-      "clientId": 9,
-      "permissionGroups": [
-        "Approvals"
-      ],
-      "roleIds": [
-        2,
-        4
-      ]
-    },
-    {
-      "id": "7",
-      "name": "Manage Settings",
-      "definition": "Access to app settings",
-      "status": "Active",
-      "clientId": 3,
-      "permissionGroups": [
-        "Settings"
-      ],
-      "roleIds": [
-        1
-      ]
-    },
-    {
-      "id": "8",
-      "name": "Create Campaigns",
-      "definition": "Create marketing campaigns",
-      "status": "Active",
-      "clientId": 1,
-      "permissionGroups": [
-        "Marketing"
-      ],
-      "roleIds": [
-        2,
-        4
-      ]
-    },
-    {
-      "id": "9",
-      "name": "Export Data",
-      "definition": "Download platform data",
-      "status": "Inactive",
-      "clientId": 4,
-      "permissionGroups": [
-        "Export Tools"
-      ],
-      "roleIds": [
-        6
-      ]
-    },
-    {
-      "id": "10",
-      "name": "Read Logs",
-      "definition": "Access system logs",
-      "status": "Active",
-      "clientId": 6,
-      "permissionGroups": [
-        "System Monitoring"
-      ],
-      "roleIds": [
-        1,
-        2,
-        6
-      ]
+      "engagementId": 2,
+      "engagementOwner": "Robert Lee",
+      "speaker": "Prof. Susan Adams",
+      "caterer": "City Banquets",
+      "cohost": "Emily Thompson",
+      "primaryDateTime": "10/05/2025 03:00 PM GMT+5:30",
+      "secondaryDateTime": "10/06/2025 11:00 AM GMT+5:30",
+      "tertiaryDateTime": "10/07/2025 04:30 PM GMT+5:30",
+      "createdDateTime": "08/13/2025 01:45 PM GMT+5:30"
     }
   ]
 }

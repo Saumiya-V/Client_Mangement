@@ -1,9 +1,8 @@
+import PermissionTable from '@/modules/permissions/PermissonTable'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/permissions')({
-  component: RouteComponent,
+  component: PermissionTable 
 })
 
-function RouteComponent() {
-  return <div>Hello "/permissions"!</div>
-}
+

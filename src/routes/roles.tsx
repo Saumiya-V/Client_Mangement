@@ -1,9 +1,8 @@
+import RoleTable from '@/modules/roles/RolesTable'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/roles')({
-  component: RouteComponent,
+  component: RoleTable
 })
 
-function RouteComponent() {
-  return <div>Hello "/roles"!</div>
-}
+

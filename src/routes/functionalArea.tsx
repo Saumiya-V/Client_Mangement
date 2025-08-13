@@ -1,9 +1,7 @@
+import  FunctionalAreaTable from '@/modules/functionalArea/FunctionalAreaTable'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/functionalArea')({
-  component: RouteComponent,
+  component:FunctionalAreaTable,
 })
 
-function RouteComponent() {
-  return <div>Hello "/functionalArea"!</div>
-}

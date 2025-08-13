@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as RolesRouteImport } from './routes/roles'
 import { Route as PermissionsRouteImport } from './routes/permissions'
 import { Route as FunctionalAreaRouteImport } from './routes/functionalArea'
+import { Route as EngagementDetailsRouteImport } from './routes/engagementDetails'
 import { Route as ClientsRouteImport } from './routes/clients'
 
 const RolesRoute = RolesRouteImport.update({
@@ -29,6 +30,11 @@ const FunctionalAreaRoute = FunctionalAreaRouteImport.update({
   path: '/functionalArea',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EngagementDetailsRoute = EngagementDetailsRouteImport.update({
+  id: '/engagementDetails',
+  path: '/engagementDetails',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ClientsRoute = ClientsRouteImport.update({
   id: '/clients',
   path: '/clients',
@@ -37,12 +43,14 @@ const ClientsRoute = ClientsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/clients': typeof ClientsRoute
+  '/engagementDetails': typeof EngagementDetailsRoute
   '/functionalArea': typeof FunctionalAreaRoute
   '/permissions': typeof PermissionsRoute
   '/roles': typeof RolesRoute
 }
 export interface FileRoutesByTo {
   '/clients': typeof ClientsRoute
+  '/engagementDetails': typeof EngagementDetailsRoute
   '/functionalArea': typeof FunctionalAreaRoute
   '/permissions': typeof PermissionsRoute
   '/roles': typeof RolesRoute
@@ -50,20 +58,38 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/clients': typeof ClientsRoute
+  '/engagementDetails': typeof EngagementDetailsRoute
   '/functionalArea': typeof FunctionalAreaRoute
   '/permissions': typeof PermissionsRoute
   '/roles': typeof RolesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/clients' | '/functionalArea' | '/permissions' | '/roles'
+  fullPaths:
+    | '/clients'
+    | '/engagementDetails'
+    | '/functionalArea'
+    | '/permissions'
+    | '/roles'
   fileRoutesByTo: FileRoutesByTo
-  to: '/clients' | '/functionalArea' | '/permissions' | '/roles'
-  id: '__root__' | '/clients' | '/functionalArea' | '/permissions' | '/roles'
+  to:
+    | '/clients'
+    | '/engagementDetails'
+    | '/functionalArea'
+    | '/permissions'
+    | '/roles'
+  id:
+    | '__root__'
+    | '/clients'
+    | '/engagementDetails'
+    | '/functionalArea'
+    | '/permissions'
+    | '/roles'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   ClientsRoute: typeof ClientsRoute
+  EngagementDetailsRoute: typeof EngagementDetailsRoute
   FunctionalAreaRoute: typeof FunctionalAreaRoute
   PermissionsRoute: typeof PermissionsRoute
   RolesRoute: typeof RolesRoute
@@ -92,6 +118,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FunctionalAreaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/engagementDetails': {
+      id: '/engagementDetails'
+      path: '/engagementDetails'
+      fullPath: '/engagementDetails'
+      preLoaderRoute: typeof EngagementDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/clients': {
       id: '/clients'
       path: '/clients'
@@ -104,6 +137,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   ClientsRoute: ClientsRoute,
+  EngagementDetailsRoute: EngagementDetailsRoute,
   FunctionalAreaRoute: FunctionalAreaRoute,
   PermissionsRoute: PermissionsRoute,
   RolesRoute: RolesRoute,

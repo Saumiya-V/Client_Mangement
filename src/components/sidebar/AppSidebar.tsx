@@ -1,4 +1,4 @@
-import { Accessibility, Building, Folder, User } from 'lucide-react'
+import { Accessibility, Building, Calendar, Folder, Shield, ShieldCheckIcon, User } from 'lucide-react'
  import {
   Sidebar,
   SidebarContent,
@@ -10,8 +10,12 @@ import { Accessibility, Building, Folder, User } from 'lucide-react'
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { Link } from '@tanstack/react-router'
+import { useState } from 'react'
+import path from 'path'
 
 const AppSidebar = () => {
+  const [isActive,setIsActive] = useState(false)
+  const [title,setTitle] = useState("")
     
     const items = [
   {
@@ -32,8 +36,13 @@ const AppSidebar = () => {
   {
     title: "Permissions",
     path:'/permissions',
-    icon: Accessibility,
+    icon: ShieldCheckIcon,
   },
+  {
+    title: "Engagements",
+    path:"/engagementDetails",
+    icon:Calendar
+  }
 ]
 
   return (
@@ -44,9 +53,12 @@ const AppSidebar = () => {
           <SidebarGroupContent>
             <SidebarMenu >
               {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton className='hover:bg-sky-100 dir-ltr hover:border-s-3 hover:border-sky-800 hover:text-sky-800 hover:font-bold rounded-none' asChild>
-                    <Link to={item.path}>
+                <SidebarMenuItem key={item.title} onClick={() => {
+                  setTitle(item.title);
+                  setIsActive(true);
+                }}>
+                  <SidebarMenuButton className={`hover:bg-sky-100 dir-ltr py-2 hover:border-s-3 hover:border-sky-800 hover:text-sky-800 hover:font-bold rounded-none`} asChild>
+                    <Link to={item.path} className={`${isActive && title === item.title ? 'bg-sky-100 border-s-3 border-sky-800 text-sky-800 font-bold' : ''}`}>
                       <item.icon />
                       <span>{item.title}</span>
                     </Link>

@@ -21,7 +21,8 @@ export default defineConfig({
   },
   server: {
     watch: {
-      ignored: ['**/node_modules/**', '**/dist/**', '**/.git/**'],
+      ignored: ['**/node_modules/**','**/large-folder/**','**/dist/**', '**/.git/**'],
     },
   },
+   
 })
