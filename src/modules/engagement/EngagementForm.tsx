@@ -375,10 +375,9 @@ function isBlocked(selectedDate: Date, interval: string, tzKey: string, slots: D
             <div className="flex flex-wrap w-[240px] h-[28vh]  overflow-x-auto gap-5">
                 {
                     timeIntervalArr.map((interval,i)=>{
-                      const disabled = !selectedTimezone ||(!!selectedDate && isBlocked(selectedDate, interval, selectedTimezone.value, formData.dateTime))
                         return <Button
                              key={i}
-                              disabled={disabled}
+                              disabled={!selectedTimezone ||(!!selectedDate && isBlocked(selectedDate, interval, selectedTimezone.value, formData.dateTime))}
                              className={cn("ml-5 bg-white text-gray-600 text-[12px] hover:bg-blue-600 hover:text-white mt-1",
                              activeInterval === interval && "bg-blue-600 text-white",
                              !selectedTimezone && "bg-gray-200 text-gray-400 opacity-100 cursor-not-allowed"
@@ -395,7 +394,7 @@ function isBlocked(selectedDate: Date, interval: string, tzKey: string, slots: D
            </div>
            {
              !isdateSelected &&  (
-              <Button onClick={()=>{addSlot();setisdateSelected(true)}} className="border rounded w-18 font-semibold h-7  text-sm flex items-center justify-center ml-98 bg-blue-600 text-white">
+              <Button onClick={()=>{ addSlot(); setisdateSelected(true)}} className="border rounded w-18 font-semibold h-7  text-sm flex items-center justify-center ml-98 bg-blue-600 text-white">
            Continue
            </Button>
              )
