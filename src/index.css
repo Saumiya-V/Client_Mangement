@@ -118,3 +118,35 @@
     @apply bg-background text-foreground;
   }
 }
+
+.small-datepicker {
+  width:210px;
+}
+
+.small-datepicker .react-datepicker__header{
+  width:208px;
+}
+
+.small-datepicker .react-datepicker__day {
+  width:22px;
+  line-height: 27px;
+  font-size:12px;
+}
+
+.small-datepicker .react-datepicker__day-name {
+  width: 25px;
+  line-height: 24px;
+  font-size: 12px;
+  margin: 1px;
+}
+
+.small-datepicker .react-datepicker__current-month {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.small-datepicker .react-datepicker__day--selected {
+  @apply bg-blue-600 text-white rounded-full h-7 w-7;
+}
+
+

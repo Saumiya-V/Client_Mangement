@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Base_Url } from "../constants/url";
+import type { SlotLabel } from "@/modules/engagement/type";
 
 
 export const fetchClientOptions = async () => {
@@ -87,3 +88,10 @@ export const fetchRoleData = async() =>{
         console.error(err)
        }
     }
+
+export const getLabel = (index:number):SlotLabel=>{
+  if(index === 0) return "Primary";
+  if(index === 1) return "Secondary";
+
+  return "Tertiary"
+}

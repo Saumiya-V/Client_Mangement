@@ -46,17 +46,6 @@ export const renderField = ({
           />
         )}
 
-        {/* {type === "date" && (
-          <input
-            id={name}
-            name={name}
-            type="date"
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            className=" outline-none w-full bg-transparent border-none focus:ring-0 px-1 py-[6px] text-sm placeholder:text-gray-100"
-          />
-        )} */}
-
           {type === "date" && (
           <DatePicker
             id={name}
@@ -101,7 +90,6 @@ export const renderField = ({
 />
 )}
       </div>
-
       {error && <span className="text-sm text-red-500">{error}</span>}
     </div>
   );

@@ -22,44 +22,60 @@ const Table = <T,>({data,columns}:TableProps<T>) => {
       });
 
   return (
-    
-          <div className="h-[65vh] rounded overflow-y-auto">
-            <table className="min-w-full bg-white ">
-              <thead className="bg-gray-100 text-sm">
-                {table.getHeaderGroups().map((headerGroup) => (
-                  <tr key={headerGroup.id}>
-                    {headerGroup.headers.map((header) => (
-                      <th
-                     key={header.id}
-                     className="px-4 py-2 text-left border-b cursor-pointer select-none sticky top-0 z-10 bg-gray-100 p-2 text-left"
-                     onClick={header.column.getToggleSortingHandler()}
+    <div className="h-[65vh] rounded overflow-y-auto border border-gray-200">
+  <table className="min-w-full bg-white border-collapse">
+    <thead className="bg-gray-100 text-sm">
+      {table.getHeaderGroups().map((headerGroup) => (
+        <tr key={headerGroup.id}>
+          {headerGroup.headers.map((header) => (
+            <th
+              key={header.id}
+              className="px-6 py-3 text-left border-b border-gray-200 cursor-pointer select-none sticky top-0 z-10 bg-gray-100 font-medium"
+              onClick={header.column.getToggleSortingHandler()}
+            >
+              {flexRender(header.column.columnDef.header, header.getContext())}
+              <span className="ml-1 text-xs">
+                {{
+                  asc: "🔼",
+                  desc: "🔽",
+                }[header.column.getIsSorted() as string] ?? null}
+              </span>
+            </th>
+          ))}
+        </tr>
+      ))}
+    </thead>
+
+    {data.length > 0 ? (
+      <tbody className="text-sm">
+        {table.getRowModel().rows.map((row) => (
+          <tr key={row.id} className="hover:bg-gray-50 transition-colors">
+            {row.getVisibleCells().map((cell) => (
+              <td
+                key={cell.id}
+                className="px-6 py-4 border-b border-gray-100 whitespace-nowrap"
+              >
+                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    ) : (
+      <tbody>
+        <tr>
+          <td
+            colSpan={table.getAllColumns().length}
+            className="text-center text-gray-500 py-6"
           >
-      {flexRender(header.column.columnDef.header, header.getContext())}
-      <span className="ml-1 text-xs">
-      {{
-        asc: '🔼',
-        desc: '🔽',
-      }[header.column.getIsSorted() as string] ?? null}
-    </span>
-    </th>
-                    ))}
-                  </tr>
-                ))}
-              </thead>
-              {data.length > 0 ? (<tbody className="text-sm">
-                {table.getRowModel().rows.map((row) => (
-                  <tr key={row.id} className="hover:bg-gray-50">
-                    {row.getVisibleCells().map((cell) => (
-                      <td key={cell.id} className="px-4 py-3 border-b">
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>):(<div className="text-center text-gray-500 relative top-30 ">No results found</div>)
-             }         
-            </table>
-          </div>
+            No results found
+          </td>
+        </tr>
+      </tbody>
+    )}
+  </table>
+</div>
+
   )
 }
 
