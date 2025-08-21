@@ -80,7 +80,7 @@ const EngagementForm = () => {
 
 
 
-const handleSubmit = async (e: React.FormEvent) => {
+const handleCreate = async (e: React.FormEvent) => {
   e.preventDefault();
 
   if (!formData.dateTime[0]) {
@@ -141,6 +141,10 @@ const handleDialogChange = (isOpen: boolean) => {
       }
     );
     setStep(1);
+    setisdateSelected(false);
+    setSelectedDate(null)
+    setActiveInterval(null);
+    setSelectedTimezone(null);
   }
 };
 
@@ -153,48 +157,39 @@ const deleteSlot = (id: string) => {
 };
 
 
-
-const addSlot = () => {
-  if (!selectedDate || !activeInterval || !selectedTimezone) {
-    alert("Please select date, time, and timezone");
-    return;
-  }
+const addSlot = (interval: string) => {
+  if (!selectedDate || !selectedTimezone) return;
 
   const tz = timezoneMap[selectedTimezone.value];
 
-
   const luxonDate = DateTime.fromFormat(
-    `${selectedDate.toDateString()} ${activeInterval}`,
+    `${selectedDate.toDateString()} ${interval}`,
     "EEE MMM dd yyyy h:mm a",
     { zone: tz }
   );
 
   if (!luxonDate.isValid) {
     console.error("Invalid Luxon date:", luxonDate.invalidExplanation);
-    alert("Invalid date/time selected");
     return;
   }
 
   const newSlot: DateTimeSlot = {
     id: crypto.randomUUID(),
-    date: luxonDate.toFormat("LLL dd yyyy"),
+    date: luxonDate.toFormat("MM/dd/yyyy"),
     time: luxonDate.toFormat("hh:mm a"),
     timezone: selectedTimezone.value,
   };
 
   setFormData((prev) => ({
     ...prev,
-    dateTime: [...prev.dateTime, newSlot].slice(0, 3), 
+    dateTime: [...prev.dateTime, newSlot].slice(0, 3),
   }));
-
-  setSelectedDate(null);
-  setActiveInterval(null);
-  setSelectedTimezone(null);
 };
 
 
 
-function isBlocked(selectedDate: Date, interval: string, tzKey: string, slots: DateTimeSlot[]) {
+
+function isBlocked(selectedDate: Date, interval: string|null, tzKey: string, slots: DateTimeSlot[]) {
   const tz = timezoneMap[tzKey];
 
   
@@ -211,7 +206,7 @@ function isBlocked(selectedDate: Date, interval: string, tzKey: string, slots: D
     const slotTz = timezoneMap[slot.timezone];
    const slotDate = DateTime.fromFormat(
   `${slot.date} ${slot.time}`,
-  "LLL dd yyyy hh:mm a",
+  "MM/dd/yyyy hh:mm a",
   { zone: slotTz }
 );
 
@@ -224,11 +219,20 @@ function isBlocked(selectedDate: Date, interval: string, tzKey: string, slots: D
 
     const equivalent = slotDate.setZone(tz);
     const bufferStart = equivalent.minus({ minutes: 30 });
-    const bufferEnd = equivalent.plus({ minutes: 30 });
+    const bufferEnd = equivalent.plus({ minutes: 45 });
 
   return current >= bufferStart && current <= bufferEnd;
   });
 }
+
+const handleContinue = () => {
+  if (!selectedDate || !selectedTimezone || !activeInterval) {
+    alert("Please select date, timezone and time");
+    return;
+  }
+
+  setisdateSelected(true)
+};
 
 
 
@@ -359,7 +363,11 @@ function isBlocked(selectedDate: Date, interval: string, tzKey: string, slots: D
               }
               {
                 slotLength <= 2 && (
-                  <Button onClick={() => { addSlot(); setisdateSelected(false); }} className={`bg-blue-600 text-white w-[190px] relative text-[12px] mt-2 ${slotLength === 1 ? 'left-11':'left-8'} font-semibold`}><Clock size={15}/>Select Alternate Date & Time</Button>
+                  <Button onClick={() => { setisdateSelected(false);
+                    setSelectedDate(null);
+                    setActiveInterval(null);
+                    setSelectedTimezone(null);
+                   }} className={`bg-blue-600 text-white w-[190px] relative text-[12px] mt-2 ${slotLength === 1 ? 'left-11':'left-8'} font-semibold`}><Clock size={15}/>Select Alternate Date & Time</Button>
                 )
               }
             </div>) : (<div className="border-1 border-gray-300 rounded w-[240px] h-[33vh]">
@@ -375,14 +383,18 @@ function isBlocked(selectedDate: Date, interval: string, tzKey: string, slots: D
             <div className="flex flex-wrap w-[240px] h-[28vh]  overflow-x-auto gap-5">
                 {
                     timeIntervalArr.map((interval,i)=>{
+                      const isDisabled = !selectedTimezone ||(!!selectedDate && isBlocked(selectedDate, interval, selectedTimezone.value, formData.dateTime))
                         return <Button
-                             key={i}
-                              disabled={!selectedTimezone ||(!!selectedDate && isBlocked(selectedDate, interval, selectedTimezone.value, formData.dateTime))}
-                             className={cn("ml-5 bg-white text-gray-600 text-[12px] hover:bg-blue-600 hover:text-white mt-1",
-                             activeInterval === interval && "bg-blue-600 text-white",
+                              key={i}
+                              disabled={isDisabled}
+                              className={cn("ml-5 bg-white text-gray-600 text-[12px] hover:bg-blue-600 hover:text-white mt-1",
+                              activeInterval === interval && "bg-blue-600 text-white",
                              !selectedTimezone && "bg-gray-200 text-gray-400 opacity-100 cursor-not-allowed"
                         )}
-                        onClick={() => setActiveInterval(interval)}>
+                        onClick={() =>{ 
+                          setActiveInterval(interval)
+                          addSlot(interval);
+                        }}>
                         {interval}
                      </Button>
 
@@ -394,7 +406,7 @@ function isBlocked(selectedDate: Date, interval: string, tzKey: string, slots: D
            </div>
            {
              !isdateSelected &&  (
-              <Button onClick={()=>{ addSlot(); setisdateSelected(true)}} className="border rounded w-18 font-semibold h-7  text-sm flex items-center justify-center ml-98 bg-blue-600 text-white">
+              <Button onClick={handleContinue} className="border rounded w-18 font-semibold h-7  text-sm flex items-center justify-center ml-98 bg-blue-600 text-white">
            Continue
            </Button>
              )
@@ -402,7 +414,7 @@ function isBlocked(selectedDate: Date, interval: string, tzKey: string, slots: D
             <hr className="mt-5"></hr>
             <div className="flex justify-between mt-5">
               <Button variant="outline" onClick={() => setStep(1)}>Back</Button>
-              <Button className={`${!formData.dateTime[0]?'bg-gray-500 hover:bg-gray-500 text-white px-4 py-1.5 rounded-sm text-sm':'bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded-sm text-sm'}`} onClick={handleSubmit}>Submit</Button>
+              <Button className={`${!formData.dateTime[0]?'bg-gray-500 hover:bg-gray-500 text-white px-4 py-1.5 rounded-sm text-sm':'bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded-sm text-sm'}`} onClick={handleCreate}>Create</Button>
             </div>
           </div>
         )}
